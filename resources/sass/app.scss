@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+.card_size {
+    width: 11rem;
+}
+ body {
+    background-color: rgb(183, 212, 241)!important;
+ }
