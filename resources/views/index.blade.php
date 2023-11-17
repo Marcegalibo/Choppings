@@ -2,7 +2,7 @@
     <section class="my-3 d-flex justify-content-center">
         <h2>Listado de productos</h2>
     </section>
-        @foreach ($category as $category)
+        @foreach ($categories as $category)
         <section class="my-3 d-flex justify-content-center">
             <h5>{{ $category->name }}</h5>
             @foreach ($category->products as $product)

@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "watch":"npm run dev"
+        "watch": "npm run dev"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.0.0",

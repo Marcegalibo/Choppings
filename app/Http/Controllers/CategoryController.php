@@ -10,11 +10,11 @@ class CategoryController extends Controller
     public function index()
     {
         //$category = Category::with('products')->get();
-        $category = Category::with(['products' => function($product){
+        $categories = Category::with(['products' => function($product){
             return $product->take(5);
         }])->get();
-        //dd($category->toArray());
-        return view('index', compact('category'));
+        //dd($categories->toArray());
+        return view('index', compact('categories'));
     }
 
     public function create()
@@ -24,12 +24,19 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $category = new Category($request->all());
+        $category->save();
+        return response()->json([], 200);
     }
+    public function getAll()
+	{
+		$categories = Category::query();
+		return DataTables::of($categories)->toJson();
+	}
 
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        return response()->json(['category' => $category], 200);
     }
 
     public function edit(string $id)
@@ -42,9 +49,10 @@ class CategoryController extends Controller
         //
     }
 
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+		return response()->json([], 204);
     }
 }
 
