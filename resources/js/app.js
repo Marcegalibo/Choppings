@@ -3,8 +3,8 @@ import { createApp } from 'vue'
 import vSelect from 'vue-select'
 
  //Components
-import TheProductList from './components/Products/TheProductList.vue'
-import TheCategoryList from './components/Categories/TheCategoryList.vue'
+import TheProductList from './components/Product/TheProductList.vue'
+import TheCategoryList from './components/Category/TheCategoryList.vue'
 import BackendError from './components/Components/BackendError.vue'
 
 

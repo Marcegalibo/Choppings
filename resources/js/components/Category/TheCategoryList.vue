@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div v-if="load_modal">
-		<category-modal :category_data="category"/>
+		<category-modal :category_data="category" />
 	</div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
 
 
 		onMounted(()=> index());
-		const index = () =>mountedTable()
+		const index = () => mountedTable()
 
 		const mountedTable = () => {
 			table.value = $('#category_table').DataTable({

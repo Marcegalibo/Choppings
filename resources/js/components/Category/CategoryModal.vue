@@ -40,7 +40,7 @@
 import { Field, Form } from 'vee-validate'
 import * as yup from 'yup';
 import { successMessage, handlerErrors } from '@/helpers/Alerts.js'
-import BackendError from '../Components/BackendError.vue'
+import BackendError from '../Components/BackendError.vue';
 import { ref, getCurrentInstance } from 'vue'
 
 export default {
@@ -79,7 +79,7 @@ export default {
 			name_rules,
 			back_errors,
 			closeModal,
-			saveCategory,
+			saveCategory
 		}
 	}
 }

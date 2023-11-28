@@ -30,15 +30,15 @@
 								</span>
 							</div>
 
-							<!-- Title -->
+							<!-- Name -->
 							<div class="col-12 mt-2">
 								<label for="name">Nombre</label>
-								<Field name="name" v-slot="{ errorMessage, field }" v-model="product.namee">
-									<input type="text" id="title" v-model="product.name"
-										:class="`form-control ${errorMessage || back_errors['title'] ? 'is-invalid' : ''}`"
+								<Field name="name" v-slot="{ errorMessage, field }" v-model="product.name">
+									<input type="text" id="name" v-model="product.name"
+										:class="`form-control ${errorMessage || back_errors['name'] ? 'is-invalid' : ''}`"
 										v-bind="field">
 									<span class="invalid-feedback">{{ errorMessage }}</span>
-									<span class="invalid-feedback">{{ back_errors['title'] }}</span>
+									<span class="invalid-feedback">{{ back_errors['name'] }}</span>
 								</Field>
 							</div>
 
@@ -54,39 +54,27 @@
 
 							<!-- Description -->
 							<div class="col-12 mt-2">
-								<Field name="description_corta" v-slot="{ errorMessage, field }" v-model="product.description_corta">
-									<label for="description_corta">Descripcion</label>
-									<textarea v-model="product.description_corta"
-										:class="`form-control ${errorMessage ? 'is-invalid' : ''}`" id="description_corta"
+								<Field name="description" v-slot="{ errorMessage, field }" v-model="product.description">
+									<label for="description">Descripcion</label>
+									<textarea v-model="product.description"
+										:class="`form-control ${errorMessage ? 'is-invalid' : ''}`" id="description"
 										rows="3" v-bind="field"></textarea>
 									<span class="invalid-feedback">{{ errorMessage }}</span>
 								</Field>
 							</div>
-
-                            <!-- Description -->
-							<div class="col-12 mt-2">
-								<Field name="description_larga" v-slot="{ errorMessage, field }" v-model="product.description_larga">
-									<label for="description_larga">Descripcion</label>
-									<textarea v-model="product.description_larga"
-										:class="`form-control ${errorMessage ? 'is-invalid' : ''}`" id="description_larga"
-										rows="3" v-bind="field"></textarea>
-									<span class="invalid-feedback">{{ errorMessage }}</span>
-								</Field>
-							</div>
-
 
 							<!-- Category -->
 							<div class="col-12 mt-2" v-if="load_category">
 								<Field name="category" v-slot="{ errorMessage, field, valid }" v-model="category">
 									<label for="category">Categoria</label>
-
-									<v-select id="category" :options="categories_data" v-model="category"
+									<v-select id="category"
+                                        :options="categories_data" v-model="category"
 										:reduce="category => category.id" v-bind="field" label="name"
-										placeholder="Selecciona categoria" :clearable="false"
+										placeholder="Selecciona categoria"
+                                        :clearable="false"
 										:class="`${errorMessage ? 'is-invalid' : ''}`">
 									</v-select>
 									<span class="invalid-feedback" v-if="!valid">{{ errorMessage }}</span>
-
 								</Field>
 							</div>
                             <!-- Cost -->
@@ -104,7 +92,7 @@
 					<!-- Buttons -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-						<button type="sumbit" class="btn btn-primary">Almacenar</button>
+						<button type="submit" class="btn btn-primary">Almacenar</button>
 					</div>
 				</Form>
 			</div>
@@ -135,8 +123,7 @@ export default {
 			return yup.object({
 				name: yup.string().required(),
 				stock: yup.number().required().positive().integer(),
-				description_corta: yup.string(),
-                description_larga: yup.string(),
+				description: yup.string(),
 				category: yup.string().required(),
                 cost: yup.number().required().positive().integer(),
 			});
@@ -145,18 +132,17 @@ export default {
 	data() {
 		return {
 			is_create: true,
-			product: {
-			},
+			product: {},
 			category: null,
 			categories_data: [],
 			load_category: false,
 			back_errors: {},
 			file: null,
-			image_preview: '/storage/images/products/default.png'
+			image_preview: '/storage/image/products/default.png'
 		}
 	},
 	created() {
-		this.index()
+		//this.index()
 	},
 
 	methods: {
@@ -202,7 +188,7 @@ export default {
 			this.$parent.product = {}
 			this.back_errors = {}
 			this.file = null
-			this.image_preview = '/storage/images/products/default.png'
+			this.image_preview = '/storage/image/products/default.png'
 			document.getElementById('file').value = ''
 			setTimeout(() => this.$refs.form.resetForm(), 100);
 

@@ -12,17 +12,17 @@ class ShoppingCart extends Model
 {
     use HasFactory, SoftDeletes;
     protected $filleable = [
-        'usuario_id',
+        'user_id',
         'product_id',
 
 
     ];
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->hasMany(Product::class, 'product_id', 'id');
     }
     public function user()
     {
-        return $this->hasOne(User::class, 'usuario_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

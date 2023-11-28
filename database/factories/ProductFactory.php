@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
-use App\Models\Category;
+use App\Models\File;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -22,13 +22,18 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(),
-            'category_id' => $this->faker->randomNumber(1,2,3,4,5,6,7),
             'stock' => $this->faker->randomDigit(),
-            'description_corta' => $this->faker->paragraph(),
-            'description_larga' => $this->faker->paragraph(),
+            'description' => $this->faker->paragraph(),
             'cost' => $this->faker->randomDigit(),
             'activo'=> $this->faker->boolean()
         ];
     }
 
+    public function configure()
+    {
+        return $this->afterCreating(function (Product $product){
+			$file = new File(['route' => '/storage/image/products/default.png']);
+			$product->file()->save($file);
+        });
+    }
 }

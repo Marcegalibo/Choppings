@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
+    public function home() {
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $category->get();
+            //dd($categories->toArray());
+        }
+        return view('categories.home', compact('categories'));
+    }
     public function index()
     {
-        //$category = Category::with('products')->get();
+        $category = Category::with('products')->get();
         $categories = Category::with(['products' => function($product){
             return $product->take(5);
+
         }])->get();
-        //dd($categories->toArray());
-        return view('index', compact('categories'));
+
+        return view('categories.index', compact('categories'));
     }
 
     public function create()

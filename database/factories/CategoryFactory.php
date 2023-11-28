@@ -19,7 +19,7 @@ class CategoryFactory extends Factory
     public function configure()
 	{
 		return $this->afterCreating(function (Category $category) {
-			Product::factory(5)->categoryId($category)->create();
+			Product::factory(10)->categoryId($category)->create();
 		});
 	}
 }

@@ -9,17 +9,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
-    protected $table = "categories"; //nombre de la tabla
-    protected $primaryKey = "category_id"; //llave primaria de la tabla categorías
-
     use HasFactory, SoftDeletes;
-    protected $filleable = [
-        'name'
-    ];
+
+    protected $filleable = ['name'];
+    protected $appends = ['five_products'];
+
+    public function getFiveProductsAttribute () {
+       $this->products()->take('5');
+    }
 
     public function products()
         {
-
             return $this->hasMany(Product::class, 'category_id','id');
         }
 }

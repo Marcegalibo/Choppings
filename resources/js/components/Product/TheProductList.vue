@@ -6,28 +6,28 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive my-4 mx-2">
-					<table class="table table-bordered" id="book_table">
+					<table class="table table-bordered" id="product_table">
 						<thead>
 							<tr>
 								<th>Nombre</th>
 								<th>Categoria</th>
 								<th>Existencias</th>
 								<th>Descripción</th>
-								<th>Descripción</th>
                                 <th>Precio</th>
+                                <th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="(product, index) in productss" :key="index">
+							<tr v-for="(product, index) in products" :key="index">
 								<td>{{ product.name }}</td>
-								<td>{{ product.category }}</td>
+								<td>{{ product.category_id }}</td>
 								<td>{{ product.stock }}</td>
-                                <td>{{ product.description_corta }}</td>
-                                <td>{{ product.description_larga }}</td>
+                                <td>{{ product.description }}</td>
                                 <td>{{ product.cost }}</td>
 								<td>
 									<div class="d-flex justify-content-center" title="Editar">
-										<button type="button" class="btn btn-warning btn-sm" @click="editProduct(product)">
+										<button type="button" class="btn btn-warning btn-sm"
+                                            @click="editProduct(product)">
 											<i class="fas fa-pencil-alt"></i>
 										</button>
 										<button type="button" class="btn btn-danger btn-sm ms-2" title="Eliminar"
@@ -61,7 +61,7 @@ export default {
 	data() {
 		return {
 			modal: null,
-			product: {}
+			product: null
 		}
 	},
 	mounted() {
@@ -69,12 +69,15 @@ export default {
 	},
 	methods: {
 		async index() {
-			$('#product_table').DataTable()
+            $('#product_table').DataTable()
 			const modal_id = document.getElementById('product_modal')
 			this.modal = new bootstrap.Modal(modal_id)
+            //console.log(this.modal)
 			modal_id.addEventListener('hidden.bs.modal', e => {
 				this.$refs.product_modal.reset()
 			})
+
+
 		},
 		editProduct(product) {
 			this.product = product
@@ -90,6 +93,7 @@ export default {
 			}
 		},
 		openModal() {
+            //console.log(this.modal)
 			this.modal.show()
 		},
 	}

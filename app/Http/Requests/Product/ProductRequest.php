@@ -42,7 +42,7 @@ class ProductRequest extends FormRequest
             'cost.required'=> 'El precio es requerido.',
             'cost.numeric'=> 'El precio debe de ser un número valido',
 			'file.required'=> 'La imagen es requerida.',
-            'file.image'=> 'El archivo debe de ser una imagen',
+            'file.image'=> 'El archivo debe de ser una imagen valida',
         ];
     }
 }

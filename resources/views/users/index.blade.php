@@ -59,7 +59,6 @@
             </div>
         </div>
     </section>
-
 	<x-slot:scripts>
         <script>
             document.addEventListener("DOMContentLoaded", loadDatatable);

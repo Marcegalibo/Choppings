@@ -14,9 +14,8 @@ return new class extends Migration
             $table->string('name');
             $table->bigInteger('category_id')->unsigned();
             $table->integer('stock');
-            $table->text('description_corta')->nullable();
-            $table->text('description_larga')->nullable();
-            $table->decimal('cost');
+            $table->text('description')->nullable();
+            $table->decimal('cost',9,2);
             $table->char('activo', 2);
             $table->timestamps();
             $table->softDeletes();
