@@ -3,19 +3,18 @@ import * as bootstrap from 'bootstrap'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import jquery from 'jquery'
+import '@fortawesome/fontawesome-free/js/all.js'
+
 import 'datatables.net-bs5'
-//import '@fortawesome/fontawesome-free/js/all.js'
+import 'datatables.net-buttons-bs5'
+import 'datatables.net-buttons/js/buttons.html5.mjs'
 
+import jsZip from 'jszip'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFont from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFont.pdfMake.vfs
 
-//import 'datatables.net-buttons-bs5'
-//import 'datatables.net-buttons/js/buttons.html5.mjs'
-
-//import jsZip from 'jszip'
-//import pdfMake from 'pdfmake/build/pdfmake'
-//import pdfFont from 'pdfmake/build/vfs_fonts'
-//pdfMake.vfs = pdfFont.pdfMake.vfs
-
-//window.JSZip = jsZip
+window.JSZip = jsZip
 window.$ = jquery
 window._ = _
 window.Swal = Swal
